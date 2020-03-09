@@ -1,7 +1,7 @@
-package com.example.trendlog.ui.main
+package com.example.trendlog.UI
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class LoginViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
