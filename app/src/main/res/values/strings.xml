@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">TrendLog</string>
-    <string name="password">Password:</string>
-    <string name="username">Username:</string>
+    <string name="password">Password</string>
+    <string name="username">E-Mail</string>
+    <string name="emailHint">YourEmail@domain.com</string>
+    <string name="passwordHint">**********</string>
+    <string name="loginButton">Login</string>
 </resources>
