@@ -1,4 +1,3 @@
-package com.example.trendlog.Data
+package com.example.trendlog.Data.Model
 
-class loggedInUser {
-}
+data class loggedInUser(var userName:String, var passWord:String)
