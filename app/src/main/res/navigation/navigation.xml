@@ -17,5 +17,6 @@
     <fragment
         android:id="@+id/register"
         android:name="com.example.trendlog.UI.Register"
-        android:label="Register" />
+        android:label="Register"
+        tools:layout="@layout/register_fragment"/>
 </navigation>
