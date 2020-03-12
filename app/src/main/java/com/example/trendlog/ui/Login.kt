@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.trendlog.R
 import com.example.trendlog.databinding.LoginFragmentBinding
 import kotlinx.android.synthetic.main.login_fragment.*
+import kotlinx.android.synthetic.main.register_fragment.*
 
 class Login : Fragment() {
 
@@ -21,6 +23,7 @@ class Login : Fragment() {
     }
 
     private lateinit var viewModel: LoginViewModel
+
     //Do any graphical initialisations
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,11 +36,11 @@ class Login : Fragment() {
     //Used for modifying UI elements
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        loginButton.setOnClickListener(){
+        loginButton.setOnClickListener {
             viewModel.login()
         }
-        alreadyMemberClick.setOnClickListener(){
-            viewModel.login()
+        noAccountClickTV.setOnClickListener { view ->
+            Navigation.findNavController(view).navigate(R.id.action_login_to_register)
         }
     }
 
