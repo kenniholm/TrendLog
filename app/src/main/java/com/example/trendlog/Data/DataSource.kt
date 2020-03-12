@@ -1,5 +1,10 @@
 package com.example.trendlog.Data
 
+import android.util.Log
+
 class DataSource {
-    //TO DO
+
+    fun login(){
+        Log.w("and", "Hello from DB")
+    }
 }
