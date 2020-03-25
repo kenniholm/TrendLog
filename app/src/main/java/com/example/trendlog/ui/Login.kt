@@ -1,4 +1,4 @@
-package com.example.trendlog.UI
+package com.example.trendlog.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.trendlog.R
 import com.example.trendlog.databinding.LoginFragmentBinding
 import kotlinx.android.synthetic.main.login_fragment.*
-import kotlinx.android.synthetic.main.register_fragment.*
 
 class Login : Fragment() {
 
@@ -32,6 +29,7 @@ class Login : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
         viewModel = ViewModelProvider.NewInstanceFactory().create(LoginViewModel::class.java)
+
         return binding.root
     }
     //Used for modifying UI elements
