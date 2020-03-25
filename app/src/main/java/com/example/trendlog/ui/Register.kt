@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.trendlog.ui
 
 import android.os.Bundle
@@ -8,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.trendlog.R
 import com.example.trendlog.databinding.RegisterFragmentBinding
 import kotlinx.android.synthetic.main.register_fragment.*
@@ -29,7 +27,7 @@ class Register : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.register_fragment, container, false)
         val application = requireNotNull(this.activity).application
         val viewModelFactory = RegisterViewModelFactory(application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(RegisterViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(RegisterViewModel::class.java)
         binding.registerViewModel = viewModel
         binding.setLifecycleOwner(this)
 
