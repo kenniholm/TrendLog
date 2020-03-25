@@ -1,28 +1,28 @@
-package com.example.trendlog.Data
+package com.example.trendlog.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.trendlog.Data.Model.User
+import com.example.trendlog.data.model.User
 
 @Database(entities = [User::class], version = 1, exportSchema = false)
-abstract class Database: RoomDatabase() {
+abstract class DataSource: RoomDatabase() {
 
-    abstract val databaseDao: DatabaseDao
+    abstract fun userDao(): UserDao
 
     companion object{
-
+        // Volatile makes sure other threads are instantly aware of any changes to the state of the instance
         @Volatile
-        private var INSTANCE: com.example.trendlog.Data.Database? = null
-
-        fun getInstance(context: Context) : DatabaseDao {
+        private var INSTANCE: DataSource? = null
+        // Creates new DB if it doesn't exist
+        fun getInstance(context: Context) : DataSource {
             synchronized(this){
                 var instance = INSTANCE
                 if (instance == null){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        Database::class.java,
+                        DataSource::class.java,
                         "TrendLogDatabase")
                         .fallbackToDestructiveMigration()
                         .build()
@@ -34,7 +34,4 @@ abstract class Database: RoomDatabase() {
 
     }
 
-    /*fun login(){
-        Log.w("and", "Hello from DB")
-    }*/
 }

@@ -1,11 +1,11 @@
-package com.example.trendlog.Data.Model
+package com.example.trendlog.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Users")
-data class UserDAO(
+data class User(
     @PrimaryKey(autoGenerate = true)
     var userID: Long,
     @ColumnInfo(name = "user_display_name")
