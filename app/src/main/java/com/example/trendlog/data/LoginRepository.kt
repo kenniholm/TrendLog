@@ -17,4 +17,9 @@ class LoginRepository(val app: Application) {
             userData.registerUser(user)
         }
     }
+    fun login(eMail: String, passWord: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            userData.checkUserLogin(eMail, passWord)
+        }
+    }
 }

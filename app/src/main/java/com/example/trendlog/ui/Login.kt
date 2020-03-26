@@ -14,13 +14,12 @@ import kotlinx.android.synthetic.main.login_fragment.*
 
 class Login : Fragment() {
 
-    private lateinit var binding: LoginFragmentBinding
-
     companion object {
         fun newInstance() = Login()
     }
 
     private lateinit var viewModel: LoginViewModel
+    private lateinit var binding: LoginFragmentBinding
 
     //Do any graphical initialisations
     override fun onCreateView(
@@ -28,7 +27,9 @@ class Login : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
-        viewModel = ViewModelProvider.NewInstanceFactory().create(LoginViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = LoginViewModelFactory(application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
 
         return binding.root
     }
@@ -36,7 +37,9 @@ class Login : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         loginButton.setOnClickListener {
-            viewModel.login()
+            var eMail = binding.eMailInput.text.toString()
+            var passWord = binding.passWordInput.text.toString()
+            viewModel.login(eMail, passWord)
         }
         noAccountClickTV.setOnClickListener { view ->
             Navigation.findNavController(view).navigate(R.id.action_login_to_register)
