@@ -1,4 +1,4 @@
-package com.example.trendlog.ui
+package com.example.trendlog.ui.register
 
 import android.os.Bundle
 import android.view.Gravity
@@ -30,7 +30,8 @@ class Register : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.register_fragment, container, false)
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = RegisterViewModelFactory(application)
+        val viewModelFactory =
+            RegisterViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(RegisterViewModel::class.java)
         binding.registerViewModel = viewModel
         binding.setLifecycleOwner(this)

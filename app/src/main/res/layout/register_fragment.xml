@@ -7,7 +7,7 @@
 <data>
     <variable
         name="registerViewModel"
-        type="com.example.trendlog.ui.RegisterViewModel" />
+        type="com.example.trendlog.ui.register.RegisterViewModel" />
 </data>
 
     <ScrollView
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.Register">
+            tools:context=".ui.register.Register">
 
             <TextView
                 android:id="@+id/regNameTV"

@@ -1,4 +1,4 @@
-package com.example.trendlog.ui
+package com.example.trendlog.ui.register
 
 import android.app.Application
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.example.trendlog.ui
+package com.example.trendlog.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 

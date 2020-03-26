@@ -1,4 +1,4 @@
-package com.example.trendlog.ui
+package com.example.trendlog.ui.login
 
 import android.os.Bundle
 import android.view.Gravity
@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.trendlog.R
 import com.example.trendlog.databinding.LoginFragmentBinding
@@ -32,7 +31,8 @@ class Login : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = LoginViewModelFactory(application)
+        val viewModelFactory =
+            LoginViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         binding.setLifecycleOwner(this)
 
