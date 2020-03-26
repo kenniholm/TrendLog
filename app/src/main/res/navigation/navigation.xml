@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_dashBoard"
+            app:destination="@id/dashBoard" />
     </fragment>
     <fragment
         android:id="@+id/register"
         android:name="com.example.trendlog.ui.Register"
         android:label="Register"
-        tools:layout="@layout/register_fragment"/>
+        tools:layout="@layout/register_fragment">
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashBoard"
+        android:name="com.example.trendlog.ui.DashBoard"
+        android:label="dash_board_fragment"
+        tools:layout="@layout/dash_board_fragment" />
 </navigation>

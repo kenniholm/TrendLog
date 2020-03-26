@@ -8,6 +8,7 @@ import com.example.trendlog.data.LoginRepository
 class RegisterViewModel(val app: Application) : ViewModel() {
 
     private val repo = LoginRepository(app)
+    var userData = repo.userData
 
 
     fun register(userName: String, passWord: String, eMail: String){

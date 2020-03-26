@@ -1,13 +1,17 @@
 package com.example.trendlog.ui
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.trendlog.R
 import com.example.trendlog.databinding.LoginFragmentBinding
 import kotlinx.android.synthetic.main.login_fragment.*
@@ -30,6 +34,16 @@ class Login : Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = LoginViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
+        binding.setLifecycleOwner(this)
+
+        viewModel.userData.observe(viewLifecycleOwner, Observer {
+            if (it == null){
+                userMessage("Wrong e-mail or password!")
+            }
+            else{
+                findNavController().navigate(R.id.action_login_to_dashBoard)
+            }
+        })
 
         return binding.root
     }
@@ -41,9 +55,14 @@ class Login : Fragment() {
             var passWord = binding.passWordInput.text.toString()
             viewModel.login(eMail, passWord)
         }
-        noAccountClickTV.setOnClickListener { view ->
-            Navigation.findNavController(view).navigate(R.id.action_login_to_register)
+        noAccountClickTV.setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_register)
         }
     }
 
+    fun userMessage(message: String){
+        val toast = Toast.makeText(this.activity, message, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
+    }
 }

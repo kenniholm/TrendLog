@@ -11,5 +11,8 @@ interface UserDao {
     fun registerUser(user: User)
 
     @Query("SELECT * FROM users WHERE user_email = :eMail AND user_password = :passWord")
-    fun checkUserLogin(eMail: String, passWord: String): User?
+    fun getUser(eMail: String, passWord: String): User?
+
+    @Query("SELECT * FROM users WHERE user_email = :eMail")
+    fun checkEmailExist(eMail: String): Boolean
 }
