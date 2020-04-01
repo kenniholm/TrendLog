@@ -13,7 +13,6 @@ class RegisterViewModel(val app: Application) : ViewModel() {
 
     fun register(userName: String, passWord: String, eMail: String){
         repo.register(userName, passWord, eMail)
-        Log.w("Hey","you registered ;P")
     }
 
 }
