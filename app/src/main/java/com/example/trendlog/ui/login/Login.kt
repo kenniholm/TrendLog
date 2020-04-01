@@ -60,7 +60,7 @@ class Login : Fragment() {
         }
     }
 
-    fun userMessage(message: String){
+    private fun userMessage(message: String){
         val toast = Toast.makeText(this.activity, message, Toast.LENGTH_LONG)
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()

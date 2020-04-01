@@ -42,6 +42,7 @@ class Register : Fragment() {
             }
             else{
                 userMessage("Your user was created!")
+
                 findNavController().navigate(R.id.action_register_to_login)
             }
         })
@@ -63,7 +64,7 @@ class Register : Fragment() {
         }
     }
 
-    fun userMessage(message: String){
+    private fun userMessage(message: String){
         val toast = Toast.makeText(this.activity, message, Toast.LENGTH_LONG)
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()
