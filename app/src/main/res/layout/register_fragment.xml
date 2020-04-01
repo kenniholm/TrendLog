@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/nameHint"
+                android:singleLine="true"
                 app:layout_constraintStart_toStartOf="@+id/regNameTV"
                 app:layout_constraintTop_toBottomOf="@+id/regNameTV" />
 
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/emailHint"
+                android:singleLine="true"
                 app:layout_constraintStart_toStartOf="@+id/regEmailTV"
                 app:layout_constraintTop_toBottomOf="@+id/regEmailTV" />
 
@@ -81,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/passwordHint"
                 android:layout_marginTop="8dp"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/regPasswordTV"
                 app:layout_constraintTop_toBottomOf="@+id/regPasswordTV"
