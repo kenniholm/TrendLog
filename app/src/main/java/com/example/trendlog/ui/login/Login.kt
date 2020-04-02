@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.afollestad.vvalidator.form
 import com.example.trendlog.R
 import com.example.trendlog.databinding.LoginFragmentBinding
 import kotlinx.android.synthetic.main.login_fragment.*
@@ -50,19 +51,43 @@ class Login : Fragment() {
     //Used for modifying UI elements
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        loginButton.setOnClickListener {
-            var eMail = binding.eMailInput.text.toString()
-            var passWord = binding.passWordInput.text.toString()
-            viewModel.login(eMail, passWord)
-        }
+
+        inputValidator()
+
         noAccountClickTV.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_register)
         }
+
+        /*loginButton.setOnClickListener {
+            val eMail = binding.eMailInput.text.toString()
+            val passWord = binding.passWordInput.text.toString()
+            viewModel.login(eMail, passWord)
+        }*/
     }
 
     private fun userMessage(message: String){
         val toast = Toast.makeText(this.activity, message, Toast.LENGTH_LONG)
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()
+    }
+
+    private fun inputValidator(){
+        form {
+            useRealTimeValidation(disableSubmit = true)
+            input(binding.eMailInput){
+                isNotEmpty()
+                isEmail()
+                length().lessThan(64)
+            }
+            input(binding.passWordInput){
+                isNotEmpty()
+                length().lessThan(32)
+            }
+            submitWith(binding.loginButton){
+                val eMail = binding.eMailInput.text.toString()
+                val passWord = binding.passWordInput.text.toString()
+                viewModel.login(eMail, passWord)
+            }
+        }
     }
 }

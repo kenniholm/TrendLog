@@ -81,16 +81,17 @@ class Register : Fragment() {
             input(binding.regNameInput){
                 isNotEmpty()
                 length().atLeast(2)
-                length().atMost(15)
+                length().atMost(32)
             }
             input(binding.regPasswordInput){
                 isNotEmpty()
                 length().atLeast(3)
-                length().lessThan(20)
+                length().lessThan(32)
             }
             input(binding.regEmailInput){
                 isNotEmpty()
                 isEmail()
+                length().lessThan(64)
             }
             submitWith(binding.regButton){
                 val userName = binding.regNameInput.text.toString()
