@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.afollestad.vvalidator.form
 import com.example.trendlog.R
 import com.example.trendlog.databinding.RegisterFragmentBinding
 import kotlinx.android.synthetic.main.register_fragment.*
@@ -52,21 +53,52 @@ class Register : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        regButton.setOnClickListener{
-            var userName = binding.regNameInput.text.toString()
-            var passWord = binding.regPasswordInput.text.toString()
-            var eMail = binding.regEmailInput.text.toString()
+        inputValidator()
 
-            viewModel.register(userName, passWord, eMail)
-        }
         haveAccountTV.setOnClickListener{
             findNavController().navigate(R.id.action_register_to_login)
         }
+
+        // Using inputValidator() library instead
+        /*regButton.setOnClickListener{
+            val userName = binding.regNameInput.text.toString()
+            val passWord = binding.regPasswordInput.text.toString()
+            val eMail = binding.regEmailInput.text.toString()
+
+            viewModel.register(userName, passWord, eMail)
+        }*/
     }
 
     private fun userMessage(message: String){
         val toast = Toast.makeText(this.activity, message, Toast.LENGTH_LONG)
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()
+    }
+
+    private fun inputValidator(){
+        form {
+            useRealTimeValidation(disableSubmit = true)
+            input(binding.regNameInput){
+                isNotEmpty()
+                length().atLeast(2)
+                length().atMost(15)
+            }
+            input(binding.regPasswordInput){
+                isNotEmpty()
+                length().atLeast(3)
+                length().lessThan(20)
+            }
+            input(binding.regEmailInput){
+                isNotEmpty()
+                isEmail()
+            }
+            submitWith(binding.regButton){
+                val userName = binding.regNameInput.text.toString()
+                val passWord = binding.regPasswordInput.text.toString()
+                val eMail = binding.regEmailInput.text.toString()
+
+                viewModel.register(userName, passWord, eMail)
+            }
+        }
     }
 }
