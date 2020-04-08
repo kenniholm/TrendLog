@@ -15,7 +15,9 @@
             app:destination="@id/register" />
         <action
             android:id="@+id/action_login_to_dashBoard"
-            app:destination="@id/dashBoard" />
+            app:destination="@id/dashBoard"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -30,5 +32,11 @@
         android:id="@+id/dashBoard"
         android:name="com.example.trendlog.ui.dashboard.DashBoard"
         android:label="dash_board_fragment"
-        tools:layout="@layout/dash_board_fragment" />
+        tools:layout="@layout/dash_board_fragment" >
+        <action
+            android:id="@+id/action_dashBoard_to_login"
+            app:destination="@id/login"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
 </navigation>

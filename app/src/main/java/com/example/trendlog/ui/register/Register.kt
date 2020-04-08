@@ -58,15 +58,6 @@ class Register : Fragment() {
         haveAccountTV.setOnClickListener{
             findNavController().navigate(R.id.action_register_to_login)
         }
-
-        // Using inputValidator() library instead
-        /*regButton.setOnClickListener{
-            val userName = binding.regNameInput.text.toString()
-            val passWord = binding.regPasswordInput.text.toString()
-            val eMail = binding.regEmailInput.text.toString()
-
-            viewModel.register(userName, passWord, eMail)
-        }*/
     }
 
     private fun userMessage(message: String){
@@ -74,14 +65,20 @@ class Register : Fragment() {
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()
     }
-
+    // Husk må ikke indholde mellemrum og evt andre skadelige tegn
     private fun inputValidator(){
+        val bannedChars = arrayOf("<", ">", "'", "[", "]", "=", "&", ";", ":")
         form {
             useRealTimeValidation(disableSubmit = true)
             input(binding.regNameInput){
                 isNotEmpty()
                 length().atLeast(2)
                 length().atMost(32)
+                for (char in bannedChars){
+                    assert("Must not contain any of the following symbols: ',<,>,[,],=,&,;,:") {view ->
+                        view.text.toString().contains("$char").not()
+                    }
+                }
             }
             input(binding.regPasswordInput){
                 isNotEmpty()

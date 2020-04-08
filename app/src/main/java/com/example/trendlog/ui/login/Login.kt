@@ -57,12 +57,6 @@ class Login : Fragment() {
         noAccountClickTV.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_register)
         }
-
-        /*loginButton.setOnClickListener {
-            val eMail = binding.eMailInput.text.toString()
-            val passWord = binding.passWordInput.text.toString()
-            viewModel.login(eMail, passWord)
-        }*/
     }
 
     private fun userMessage(message: String){
