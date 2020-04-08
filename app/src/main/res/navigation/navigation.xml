@@ -12,7 +12,9 @@
         tools:layout="@layout/login_fragment" >
         <action
             android:id="@+id/action_login_to_register"
-            app:destination="@id/register" />
+            app:destination="@id/register"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_login_to_dashBoard"
             app:destination="@id/dashBoard"
@@ -26,7 +28,9 @@
         tools:layout="@layout/register_fragment">
         <action
             android:id="@+id/action_register_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/dashBoard"

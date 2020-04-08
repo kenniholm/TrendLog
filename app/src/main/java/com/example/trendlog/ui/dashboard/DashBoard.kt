@@ -2,16 +2,17 @@ package com.example.trendlog.ui.dashboard
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
+import android.view.*
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 import com.example.trendlog.R
+import com.example.trendlog.databinding.DashBoardFragmentBinding
 
 class DashBoard : Fragment() {
 
@@ -20,17 +21,23 @@ class DashBoard : Fragment() {
     }
 
     private lateinit var viewModel: DashBoardViewModel
+    private lateinit var toolBar : Toolbar
+    private lateinit var binding : DashBoardFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        binding = DataBindingUtil.inflate(inflater, R.layout.dash_board_fragment, container, false)
         val application = requireNotNull(this.activity).application
         val viewModelFactory = DashBoardViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DashBoardViewModel::class.java)
 
-        return inflater.inflate(R.layout.dash_board_fragment, container, false)
+        toolBar = binding.toolbar
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).setSupportActionBar(toolBar)
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,6 +48,19 @@ class DashBoard : Fragment() {
         }
         callback.isEnabled = true
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.dashboardmenu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.logoutFromMenu -> {
+                logoutDialog()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun logoutDialog(){
@@ -59,5 +79,4 @@ class DashBoard : Fragment() {
     private fun logout(){
         findNavController().navigate(R.id.action_dashBoard_to_login)
     }
-
 }
