@@ -76,7 +76,7 @@ class Register : Fragment() {
                 length().atMost(32)
                 for (char in bannedChars){
                     assert("Must not contain any of the following symbols: ',<,>,[,],=,&,;,:") {view ->
-                        view.text.toString().contains("$char").not()
+                        view.text.toString().contains(char).not()
                     }
                 }
             }
