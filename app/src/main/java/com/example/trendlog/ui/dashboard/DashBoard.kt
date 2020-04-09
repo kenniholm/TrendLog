@@ -21,7 +21,6 @@ class DashBoard : Fragment() {
     }
 
     private lateinit var viewModel: DashBoardViewModel
-    private lateinit var toolBar : Toolbar
     private lateinit var binding : DashBoardFragmentBinding
 
     override fun onCreateView(
@@ -33,9 +32,8 @@ class DashBoard : Fragment() {
         val viewModelFactory = DashBoardViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DashBoardViewModel::class.java)
 
-        toolBar = binding.toolbar
         setHasOptionsMenu(true)
-        (activity as AppCompatActivity).setSupportActionBar(toolBar)
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         return binding.root
     }
