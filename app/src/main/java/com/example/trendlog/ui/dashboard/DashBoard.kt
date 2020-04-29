@@ -3,6 +3,8 @@ package com.example.trendlog.ui.dashboard
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import android.webkit.WebChromeClient
+import android.webkit.WebViewClient
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.activity.addCallback
@@ -34,6 +36,10 @@ class DashBoard : Fragment() {
 
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+
+        binding.WebViewGraphs.webViewClient = WebViewClient()
+        binding.WebViewGraphs.settings.javaScriptEnabled = true
+        binding.WebViewGraphs.loadUrl("API key here")
 
         return binding.root
     }
