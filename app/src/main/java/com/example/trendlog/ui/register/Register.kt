@@ -69,17 +69,17 @@ class Register : Fragment() {
     private fun inputValidator(){
         val bannedChars = arrayOf("<", ">", "'", "[", "]", "=", "&", ";", ":")
         form {
-            useRealTimeValidation(disableSubmit = true)
-            input(binding.regNameInput){
-                isNotEmpty()
-                length().atLeast(2)
-                length().atMost(32)
-                for (char in bannedChars){
-                    assert("Must not contain any of the following symbols: ',<,>,[,],=,&,;,:") {view ->
-                        view.text.toString().contains(char).not()
+                useRealTimeValidation(disableSubmit = true)
+                input(binding.regNameInput){
+                    isNotEmpty()
+                    length().atLeast(2)
+                    length().atMost(32)
+                    for (char in bannedChars){
+                        assert("Must not contain any of the following symbols: ',<,>,[,],=,&,;,:") {view ->
+                            view.text.toString().contains(char).not()
+                        }
                     }
                 }
-            }
             input(binding.regPasswordInput){
                 isNotEmpty()
                 length().atLeast(3)
